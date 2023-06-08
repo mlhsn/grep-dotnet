@@ -1,5 +1,5 @@
 ﻿using System;
-
+using CommandLine;
 
 namespace GrepDotNet
 {
@@ -7,7 +7,12 @@ namespace GrepDotNet
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Hello GrepDotNet");
+            var parsedResults = Parser.Default.ParseArguments<Application.Console.Options>(args)
+                .WithParsed((Application.Console.Options options) => {
+                    System.Console.WriteLine(options.Pattern);
+                    options.InputFiles.ToList<string>().ForEach(item => System.Console.WriteLine(item));
+                })
+                .WithNotParsed(x => System.Console.WriteLine(x.ToString()));
         }
     }
 }

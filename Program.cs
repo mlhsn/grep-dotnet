@@ -6,7 +6,7 @@ namespace GrepDotNet
     {
         static void Main(string[] args)
         {
-            var parsedResults = Parser.Default.ParseArguments<Application.Console.Options>(args)
+            Parser.Default.ParseArguments<Application.Console.Options>(args)
                 .WithParsed((Application.Console.Options options) =>
                 {
                     Console.WriteLine(options.Pattern);

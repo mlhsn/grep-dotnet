@@ -12,7 +12,7 @@ namespace GrepDotNet
                     Console.WriteLine(options.Pattern);
                     options.InputFiles.ToList<string>().ForEach(item => Console.WriteLine(item));
                 })
-                .WithNotParsed(x => Console.WriteLine(x.ToString()));
+                .WithNotParsed(x => Console.WriteLine($"CommandLine error: {x.ToString()}"));
         }
     }
 }

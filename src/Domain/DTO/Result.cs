@@ -1,4 +1,4 @@
 namespace Domain.DTO
 {
-    public readonly record struct Result(String container);
+    public readonly record struct Result(String container, String fileName);
 }

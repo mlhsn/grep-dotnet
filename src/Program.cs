@@ -1,4 +1,5 @@
-﻿using CommandLine;
+﻿using Application.Console;
+using CommandLine;
 using Domain.DTO;
 using Domain.Services;
 
@@ -8,13 +9,13 @@ namespace GrepDotNet
     {
         static void Main(string[] args)
         {
-            Parser.Default.ParseArguments<Application.Console.Options>(args)
-                .WithParsed((Application.Console.Options options) =>
+            Parser.Default.ParseArguments<Options>(args)
+                .WithParsed((Options options) =>
                 {
                     List<Result> results;
                     Search.ForPattern(new Request(options.Pattern, options.InputFiles.ToList<String>()), out results);
 
-                    Console.WriteLine(results.Count());
+                    Presentation.DisplayListOfResult(results, new PresentationLogic { showFile = options.InputFiles.Count() > 0 });
                 })
                 .WithNotParsed(x => Console.WriteLine($"CommandLine error: {x.ToString()}"));
         }

@@ -22,7 +22,7 @@ public class Search
                 {
                     if (line.Contains(request.pattern))
                     {
-                        results.Add(new Result { container = line });
+                        results.Add(new Result { container = line, fileName = fileName });
                     }
                 }
             }
